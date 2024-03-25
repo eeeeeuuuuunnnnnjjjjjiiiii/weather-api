@@ -14,9 +14,11 @@ import WeatherButton from './component/WeatherButton';
 //6.데이터를 들고오는 동안 로딩 스피너가 돈다
 
 function App() {
+
   const [weather,setWeather]= useState(null);
   const [city,setCity]=useState("");
   const cities=['paris','new york','tokyo','seoul'];
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) =>{
     let lat = position.coords.latitude;
@@ -25,15 +27,17 @@ function App() {
     });
   };
 
+
   const getWeatherByCurrentLocation = async(lat,lon) =>{
-    let url = 'https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=de14f99f543bf8277bafbe0fb88518cd&units=metric';
+    let url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=2425cd118e415efb0329756dfae5adfe&units=metric`;
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
   };
 
   const getWeatherByCity = async () => {
-    let url = 'https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={de14f99f543bf8277bafbe0fb88518cd&units=metric}';
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=2425cd118e415efb0329756dfae5adfe&units=metric`;
+
     let response = await fetch(url);
     let data = await response.json();
     setWeather(data);
